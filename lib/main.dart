@@ -74,6 +74,14 @@ class _MyHomePageState extends State<MyHomePage> {
         throw UnimplementedError('no Widget for $selectedIndex');
     }
 
+    var mainArea = ColoredBox(
+      color: Theme.of(context).colorScheme.surfaceVariant,
+      child: AnimatedSwitcher(
+        duration: Duration(milliseconds: 200),
+        child: page,
+      ),
+    );
+
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
@@ -100,16 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               ),
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: page,
-                ),
-              ),
+              Expanded(child: mainArea),
             ],
           ),
         );
-      }
+      },
     );
   }
 }
